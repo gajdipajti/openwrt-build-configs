@@ -7,7 +7,7 @@ CONFIG_TARGET_DEVICE_ar71xx_tiny_DEVICE_tl-wr841-v8=y
 CONFIG_TARGET_DEVICE_ar71xx_tiny_DEVICE_tl-wr841-v9=y
 CONFIG_TARGET_DEVICE_ar71xx_tiny_DEVICE_tl-wr941nd-v3=y
 CONFIG_DEVEL=y
-CONFIG_CLEAN_IPKG=y
+# CONFIG_FEED_telephony is not set
 CONFIG_IMAGEOPT=y
 # CONFIG_IPV6 is not set
 # CONFIG_KERNEL_CRASHLOG is not set
@@ -15,57 +15,46 @@ CONFIG_IMAGEOPT=y
 # CONFIG_KERNEL_DEBUG_KERNEL is not set
 # CONFIG_KERNEL_ELF_CORE is not set
 # CONFIG_KERNEL_IPV6 is not set
-# CONFIG_KERNEL_SWAP is not set
 CONFIG_LUCI_LANG_hu=y
-CONFIG_PACKAGE_attendedsysupgrade-common=y
-CONFIG_PACKAGE_cgi-io=y
-CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
-CONFIG_PACKAGE_iptables-mod-ipopt=y
-CONFIG_PACKAGE_kmod-ifb=y
-CONFIG_PACKAGE_kmod-ipt-conntrack-extra=y
-CONFIG_PACKAGE_kmod-ipt-ipopt=y
+CONFIG_LUCI_SRCDIET=y
+CONFIG_PACKAGE_ip-tiny=y
 # CONFIG_PACKAGE_kmod-lib-crc-ccitt is not set
 # CONFIG_PACKAGE_kmod-nf-ipt6 is not set
 # CONFIG_PACKAGE_kmod-ppp is not set
-CONFIG_PACKAGE_kmod-sched-cake=y
-CONFIG_PACKAGE_kmod-sched-core=y
+CONFIG_PACKAGE_kmod-udptunnel4=y
+CONFIG_PACKAGE_kmod-wireguard=y
 # CONFIG_PACKAGE_libip6tc is not set
 CONFIG_PACKAGE_libiwinfo-lua=y
 CONFIG_PACKAGE_liblua=y
 CONFIG_PACKAGE_liblucihttp=y
 CONFIG_PACKAGE_liblucihttp-lua=y
-CONFIG_PACKAGE_librt=y
+CONFIG_PACKAGE_libmnl=y
+# CONFIG_PACKAGE_libpthread is not set
 CONFIG_PACKAGE_libubus-lua=y
-CONFIG_PACKAGE_libuuid=y
 CONFIG_PACKAGE_lua=y
-CONFIG_PACKAGE_luci=y
-CONFIG_PACKAGE_luci-app-attendedsysupgrade=y
 CONFIG_PACKAGE_luci-app-firewall=y
-CONFIG_PACKAGE_luci-app-sqm=y
-CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-wireguard=y
 CONFIG_PACKAGE_luci-base=y
+CONFIG_PACKAGE_luci-compat=y
 CONFIG_PACKAGE_luci-i18n-base-hu=y
 CONFIG_PACKAGE_luci-i18n-firewall-hu=y
-CONFIG_PACKAGE_luci-i18n-upnp-hu=y
 CONFIG_PACKAGE_luci-lib-ip=y
 CONFIG_PACKAGE_luci-lib-jsonc=y
 CONFIG_PACKAGE_luci-lib-nixio=y
 CONFIG_PACKAGE_luci-mod-admin-full=y
-CONFIG_PACKAGE_luci-proto-ppp=y
+CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_miniupnpd=y
 CONFIG_PACKAGE_muninlite=y
+# CONFIG_PACKAGE_openwrt-keyring is not set
 # CONFIG_PACKAGE_opkg is not set
 # CONFIG_PACKAGE_ppp is not set
 CONFIG_PACKAGE_rpcd=y
-CONFIG_PACKAGE_rpcd-mod-rpcsys=y
-CONFIG_PACKAGE_rpcd-mod-rrdns=y
-CONFIG_PACKAGE_sqm-scripts=y
-CONFIG_PACKAGE_tc=y
 CONFIG_PACKAGE_uhttpd=y
-CONFIG_PACKAGE_uhttpd-mod-ubus=y
+# CONFIG_PACKAGE_usign is not set
+CONFIG_PACKAGE_wireguard-tools=y
 CONFIG_PACKAGE_xinetd=y
-# CONFIG_PER_FEED_REPO is not set
+# CONFIG_SIGNATURE_CHECK is not set
+# CONFIG_SIGNED_PACKAGES is not set
 CONFIG_STRIP_KERNEL_EXPORTS=y
 CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=1024
 CONFIG_USE_MKLIBS=y
@@ -78,18 +67,7 @@ CONFIG_VERSION_HOME_URL=""
 CONFIG_VERSION_HWREV=""
 CONFIG_VERSION_MANUFACTURER=""
 CONFIG_VERSION_MANUFACTURER_URL=""
-CONFIG_VERSION_NUMBER="18.06.6"
+CONFIG_VERSION_NUMBER=""
 CONFIG_VERSION_PRODUCT=""
-CONFIG_VERSION_REPO="http://downloads.openwrt.org/releases/18.06.6"
+CONFIG_VERSION_REPO="http://downloads.openwrt.org/releases/18.06.9"
 CONFIG_VERSION_SUPPORT_URL=""
-# CONFIG_BINUTILS_USE_VERSION_2_27 is not set
-# CONFIG_BINUTILS_USE_VERSION_2_29_1 is not set
-# CONFIG_BINUTILS_USE_VERSION_2_30 is not set
-# CONFIG_EXTERNAL_TOOLCHAIN_LIBC_USE_GLIBC is not set
-# CONFIG_EXTERNAL_TOOLCHAIN_LIBC_USE_MUSL is not set
-# CONFIG_EXTERNAL_TOOLCHAIN_LIBC_USE_UCLIBC is not set
-# CONFIG_GCC_USE_VERSION_5 is not set
-# CONFIG_GCC_USE_VERSION_6 is not set
-# CONFIG_GCC_USE_VERSION_7 is not set
-# CONFIG_LIBC_USE_GLIBC is not set
-# CONFIG_LIBC_USE_MUSL is not set
