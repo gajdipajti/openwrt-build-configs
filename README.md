@@ -81,7 +81,7 @@ Built on: Ubuntu 22.04
   * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall
   * Themes: +luci-theme-bootstrap
-  * Libraries: nothing changed
+  * Libraries: -libuclient
 * Network:
   * VPN: +wireguard-tools
   * Webservers: +uhttpd
@@ -91,6 +91,8 @@ Built on: Ubuntu 22.04
 ### 2.2. Tiny-Avitus build config for OpenWRT 21.02.x
 
 Built on: Ubuntu 22.04
+
+Tried gcc-7, gcc-8, and gcc-10; but gcc-8 gave me the smallest image.
 
 #### 2.2.1. Feeds changes
 
