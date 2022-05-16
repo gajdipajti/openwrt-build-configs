@@ -38,7 +38,7 @@ swig time xsltproc zlib1g-dev
 
 ## 2. Available configurations
 
-* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite
+* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard (if possible), +muninlite (if possible)
 * Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
 
 ### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
@@ -58,7 +58,8 @@ Built on: Ubuntu 22.04
 
 #### 2.1.3. Changes from default (but compare it yourself)
 
-> Oversized, cannot be built with the current config.
+> Initial build, but it could barely fit. I had to remove wireguard and muninlite support. I had to strip busybox a bit (poweroff, halt, swapon, swapoff,fgrep,egrep).
+> After testing I will post the a short list of the changes.
 
 ### 2.2. Tiny-Avitus build config for OpenWRT 21.02.x
 
