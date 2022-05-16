@@ -76,16 +76,14 @@ Built on: Ubuntu 22.04
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
-  * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
 * Luci: (the current state)
   * Collections: nothing selected
   * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall
   * Themes: +luci-theme-bootstrap
-  * Protocols: +luci-proto-wireguard
   * Libraries: nothing changed
 * Network:
-  * VPN: +wireguard, +wireguard-tools
+  * VPN: +wireguard-tools
   * Webservers: +uhttpd
   * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
   * -uclient-fetch
@@ -120,21 +118,20 @@ Built on: Ubuntu 22.04
   * Int Utilities: -halt, -poweroff
   * Linux System Utilities: -swapoff, -swapon
   * Miscellaneous Utilities: -less
-  * Shelly: ash optimize for size
+  * Shells: ash optimize for size
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
-  * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
 * Luci: (the current state)
   * Collections: nothing selected
-  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
   * Protocols: +luci-proto-wireguard
   * Libraries: nothing changed
 * Network:
-  * VPN: +wireguard, +wireguard-tools
-  * Webservers: +uhttpd
+  * VPN: +wireguard-tools
+  * Webservers: +uhttpd, +uhttpd-mod-ubus
   * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
   * -uclient-fetch
 
@@ -169,11 +166,10 @@ Built on: Ubuntu 20.04.4
   * Int Utilities: -halt, -poweroff
   * Linux System Utilities: -swapoff, -swapon
   * Miscellaneous Utilities: -less
-  * Shelly: ash optimize for size
+  * Shells: ash optimize for size
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
-  * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
 * Luci: (the current state)
   * Collections: nothing selected
   * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
