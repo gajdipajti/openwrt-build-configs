@@ -18,14 +18,32 @@ I usually rebuild only tagged versions: *v18.06.1*, *v19.07.6*, *...*
 9. Make your changes.
 10. ```make``` or ```make -j5``` # Depending on the number of cores.
 
+### 1.1. Build systems
+
+Reference: [3](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
+
+Ubuntu 22.04: 
+```
+sudo apt install build-essential gawk gcc-multilib flex git gettext libncurses5-dev libssl-dev python3-distutils zlib1g-dev
+```
+
+Ubuntu 20.04.4:
+```
+sudo apt install build-essential ccache ecj fastjar file g++ gawk \
+gettext git java-propose-classpath libelf-dev libncurses5-dev \
+libncursesw5-dev libssl-dev python python2.7-dev python3 unzip wget \
+python-distutils-extra python3-setuptools python3-dev rsync subversion \
+swig time xsltproc zlib1g-dev 
+```
+
 ## 2. Available configurations
 
-* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
+* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite
 * Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
 
 ### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
 
-Built on: Ubuntu 20.04.4
+Built on: Ubuntu 22.04
 
 #### 2.1.1. Feeds changes
 
@@ -44,7 +62,7 @@ Built on: Ubuntu 20.04.4
 
 ### 2.2. Tiny-Avitus build config for OpenWRT 21.02.x
 
-Built on: Ubuntu 20.04.4
+Built on: Ubuntu 22.04
 
 #### 2.2.1. Feeds changes
 
