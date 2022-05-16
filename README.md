@@ -1,9 +1,6 @@
 # openwrt-build-configs
 A storage for my custom openwrt build config files, for small devices. Just to keep track of the changes. You can reuse them, change them, end even make suggestions how to lower the footprint and add more functionality.
 
-* Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
-* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
-
 ## 1. How to build
 
 On my build computer I use zfs snapshots between each steps, so that I can rollback whenever I want to a previous state. This defeats the git version control system, but if it works... (I don't use git that often). References [1](https://gist.github.com/chankruze/dee8c2ba31c338a60026e14e3383f981), [2](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
@@ -22,6 +19,9 @@ I usually rebuild only tagged versions: *v18.06.1*, *v19.07.6*, *...*
 10. ```make``` or ```make -j5``` # Depending on the number of cores.
 
 ## 2. Available configurations
+
+* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
+* Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
 
 ### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
 
