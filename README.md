@@ -78,7 +78,7 @@ Built on: Ubuntu 22.04
 
 #### 2.2.3. Changes from default (but compare it yourself)
 
->> Still building...
+> Oversized, cannot be built with the current config.
 
 ### 2.3. Tiny-Cyrus build config for OpenWRT 19.07.x
 
