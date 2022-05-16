@@ -58,7 +58,7 @@ Built on: Ubuntu 22.04
 
 #### 2.1.3. Changes from default (but compare it yourself)
 
->> Still building...
+> Oversized, cannot be built with the current config.
 
 ### 2.2. Tiny-Avitus build config for OpenWRT 21.02.x
 
