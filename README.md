@@ -21,16 +21,6 @@ I usually rebuild only tagged versions: *v18.06.1*, *v19.07.6*, *...*
 9. Make your changes.
 10. ```make``` or ```make -j5``` # Depending on the number of cores.
 
-# Download and update the sources
-git clone 
-cd openwrt
-git pull
- 
-# Select a specific code revision
-git branch -a
-git tag
-git checkout v21.02.3
-
 ## 2. Available configurations
 
 ### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
