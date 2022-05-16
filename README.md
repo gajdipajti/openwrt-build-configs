@@ -38,7 +38,7 @@ swig time xsltproc zlib1g-dev
 
 ## 2. Available configurations
 
-* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard (if possible), +muninlite (if possible)
+* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, *+wireguard (if possible)*, *+muninlite (if possible)*
 * Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
 
 ### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
@@ -59,7 +59,36 @@ Built on: Ubuntu 22.04
 #### 2.1.3. Changes from default (but compare it yourself)
 
 > Initial build, but it could barely fit. I had to remove wireguard and muninlite support. I had to strip busybox a bit (poweroff, halt, swapon, swapoff,fgrep,egrep).
-> After testing I will post the a short list of the changes.
+>
+> It might forget the configuration, because of free space limitations.
+
+* Target: ath79 + subtarget: tiny
+* Target Images: squashfs with 1024 Block size
+* Global build settings: small changes, mostly stripping and removing IPv6, -SECCOMP
+* Image configuration:
+  * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
+* Base: -opkg, -ca-bundle, busybox:applets
+  * Finding Utilities: -egrep, -fgrep
+  * Int Utilities: -halt, -poweroff
+  * Linux System Utilities: -swapoff, -swapon
+  * Miscellaneous Utilities: -less
+  * Shelly: ash optimize for size
+* Administration: +muninlite
+* Kernel modules:
+  * Network Support: -kmod-ppp, +kmod-wireguard
+  * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
+* Luci: (the current state)
+  * Collections: nothing selected
+  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Applications: +luci-app-firewall
+  * Themes: +luci-theme-bootstrap
+  * Protocols: +luci-proto-wireguard
+  * Libraries: nothing changed
+* Network:
+  * VPN: +wireguard, +wireguard-tools
+  * Webservers: +uhttpd
+  * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
+  * -uclient-fetch
 
 ### 2.2. Tiny-Avitus build config for OpenWRT 21.02.x
 
@@ -79,9 +108,37 @@ Built on: Ubuntu 22.04
 
 #### 2.2.3. Changes from default (but compare it yourself)
 
-> Oversized, cannot be built with the current config.
+> It could be built, but it was also oversized at first. Has not been flashed to any device yet. Maybe it will forget the configuration as there is not enough free space.
 
-### 2.3. Tiny-Cyrus build config for OpenWRT 19.07.x
+* Target: ath79 + subtarget: tiny
+* Target Images: squashfs with 1024 Block size
+* Global build settings: small changes, mostly stripping and removing IPv6
+* Image configuration:
+  * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
+* Base: -opkg, -ca-bundle, busybox:applets
+  * Finding Utilities: -egrep, -fgrep
+  * Int Utilities: -halt, -poweroff
+  * Linux System Utilities: -swapoff, -swapon
+  * Miscellaneous Utilities: -less
+  * Shelly: ash optimize for size
+* Administration: +muninlite
+* Kernel modules:
+  * Network Support: -kmod-ppp, +kmod-wireguard
+  * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
+* Luci: (the current state)
+  * Collections: nothing selected
+  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Applications: +luci-app-firewall, +luci-app-wireguard
+  * Themes: +luci-theme-bootstrap
+  * Protocols: +luci-proto-wireguard
+  * Libraries: nothing changed
+* Network:
+  * VPN: +wireguard, +wireguard-tools
+  * Webservers: +uhttpd
+  * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
+  * -uclient-fetch
+
+### 2.3. Tiny-Avitus build config for OpenWRT 19.07.x
 
 Built on: Ubuntu 20.04.4
 
@@ -100,12 +157,61 @@ Built on: Ubuntu 20.04.4
 
 #### 2.3.3. Changes from default (but compare it yourself)
 
+> It could be built, but it was also oversized at first. Has not been flashed to any device yet. Maybe it will forget the configuration as there is not enough free space.
+
+* Target: ath79 + subtarget: tiny
+* Target Images: squashfs with 1024 Block size
+* Global build settings: small changes, mostly stripping and removing IPv6
+* Image configuration:
+  * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
+* Base: -opkg, -ca-bundle, busybox:applets
+  * Finding Utilities: -egrep, -fgrep
+  * Int Utilities: -halt, -poweroff
+  * Linux System Utilities: -swapoff, -swapon
+  * Miscellaneous Utilities: -less
+  * Shelly: ash optimize for size
+* Administration: +muninlite
+* Kernel modules:
+  * Network Support: -kmod-ppp, +kmod-wireguard
+  * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
+* Luci: (the current state)
+  * Collections: nothing selected
+  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Applications: +luci-app-firewall, +luci-app-wireguard
+  * Themes: +luci-theme-bootstrap
+  * Protocols: +luci-proto-wireguard
+  * Libraries: nothing changed
+* Network:
+  * VPN: +wireguard, +wireguard-tools
+  * Webservers: +uhttpd
+  * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
+  * -uclient-fetch
+
+### 2.4. Tiny-Cyrus build config for OpenWRT 19.07.x
+
+Built on: Ubuntu 20.04.4
+
+#### 2.4.1. Feeds changes
+
+* packages: https://github.com/gajdipajti/packages/tree/openwrt-19.07 (backported muninlite from master)
+* telephony: removed
+* freifunk: removed
+
+#### 2.4.2. Selected devices
+
+* TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
+* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
+* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11) 
+* TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
+
+#### 2.4.3. Changes from default (but compare it yourself)
+
 * Target: ar7xxx/ar9xxx + subtarget: tiny
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
   * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
-* Base: -opkg, dropbear enable compression, busybox+top, -openwrt-keyring
+* Base: -opkg, dropbear enable compression, -openwrt-keyring
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
@@ -121,25 +227,25 @@ Built on: Ubuntu 20.04.4
   * VPN: +wireguard, +wireguard-tools
   * Webservers: +uhttpd
 
-### 2.4. Tiny-Cyrus build config for OpenWRT 18.06.x
+### 2.5. Tiny-Cyrus build config for OpenWRT 18.06.x
 
 **End-of-Life**
 
 Built on: Ubuntu 20.04.4
 
-#### 2.4.1. Feeds changes
+#### 2.5.1. Feeds changes
 
 * packages: https://github.com/gajdipajti/packages/tree/openwrt-18.06 (backported muninlite from master)
 * telephony: removed
 
-#### 2.4.2. Selected devices
+#### 2.5.2. Selected devices
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
 * TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
 * TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11) 
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
-#### 2.4.3. Changes from default (but compare it yourself)
+#### 2.5.3. Changes from default (but compare it yourself)
 
 * Target: ar7xxx/ar9xxx + subtarget: tiny
 * Target Images: squashfs with 1024 Block size
