@@ -142,9 +142,11 @@ Built on: Ubuntu 22.04
   * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
   * -uclient-fetch
 
-### 2.3. Tiny-Avitus build config for OpenWRT 19.07.x
+### 2.3. Tiny-Avitus build config for OpenWRT 19.07.10
 
-Built on: Ubuntu 20.04.4
+*This OpenWRT branch is **end-of-life**. I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration.  If I adjust my build configuration, then I will upload the changes just for comparison.*
+
+Built on: Ubuntu 20.04.4; Not tested!
 
 #### 2.3.1. Feeds changes
 
@@ -167,8 +169,8 @@ Built on: Ubuntu 20.04.4
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
-  * Version configuration options: Release distribution: Avitud; Support URL: this GitHub repository
-* Base: -opkg, -ca-bundle, busybox:applets
+  * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
+* Base: -opkg, -ca-bundle, -busybox:
   * Finding Utilities: -egrep, -fgrep
   * Int Utilities: -halt, -poweroff
   * Linux System Utilities: -swapoff, -swapon
@@ -177,22 +179,22 @@ Built on: Ubuntu 20.04.4
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
+* Libraries: -libuclient, +libqrencode
+  * Wireless Drivers: -ath-dfs, -mac80211-mesh
 * Luci: (the current state)
   * Collections: nothing selected
-  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Modules: +luci-base, +minify*, Translations: english, hungarian, +luci-mod-admin-full, +luci-mod-network, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
   * Protocols: +luci-proto-wireguard
-  * Libraries: nothing changed
 * Network:
   * VPN: +wireguard, +wireguard-tools
-  * Webservers: +uhttpd
-  * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
-  * -uclient-fetch
+  * Webservers: +uhttpd, +uhttpd-mod-ubus
+  * -uclient-fetch, +qrencode
 
-### 2.4. Tiny-Cyrus build config for OpenWRT 19.07.x
+### 2.4. Tiny-Cyrus build config for OpenWRT 19.07.10
 
-**End-of-life**
+*This OpenWRT branch is **end-of-life**. I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration.  If I adjust my build configuration, then I will upload the changes just for comparison.*
 
 Built on: Ubuntu 20.04.4; Tested on: TPLink TL-WR841ND v8;
 
@@ -216,27 +218,28 @@ Built on: Ubuntu 20.04.4; Tested on: TPLink TL-WR841ND v8;
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
   * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
-* Base: -opkg, dropbear enable compression, -openwrt-keyring
+* Base: -opkg, -dropbear:[swapon, swapoff]
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
   * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
+* Libraries: -libuclient, +libqrencode
+  * Wireless Drivers: -ath-dfs, -mac80211-mesh
 * Luci: (the current state)
-  * Collections: nothing selected
-  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-mod-admin-full, +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Modules: +luci-base, +minify*, Translations: english, hungarian, +luci-mod-admin-full, +luci-mod-network, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
-  * Protocols: "luci-proto-wireguard
-  * Libraries: nothing changed
+  * Protocols: +luci-proto-wireguard
 * Network:
   * VPN: +wireguard, +wireguard-tools
-  * Webservers: +uhttpd
+  * Webservers: +uhttpd, +uhttpd-mod-ubus
+  * -uclient-fetch, +qrencode
 
-### 2.5. Tiny-Cyrus build config for OpenWRT 18.06.x
+### 2.5. Tiny-Cyrus build config for OpenWRT 18.06.9
 
-**End-of-Life**
+*This OpenWRT branch is **end-of-life**. I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration. If I adjust my build configuration, then I will upload the changes just for comparison.*
 
-Built on: Ubuntu 20.04.4
+Built on: Ubuntu 20.04.4; The current build is not tested on any device.
 
 #### 2.5.1. Feeds changes
 
@@ -257,18 +260,19 @@ Built on: Ubuntu 20.04.4
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
   * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
-* Base: -opkg, dropbear enable compression, -openwrt-keyring
+* Base: -opkg, -dropbear:[swapon, swapoff]
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
   * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
-* Luci: (the current state)
-  * Collections: nothing selected
-  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full
+* Libraries: -libuclient, +libqrencode
+  * Wireless Drivers: -ath-dfs, -mac80211-mesh
+* Luci:
+  * Modules: +luci-base, +minify*, Translations: english, hungarian, +luci-mod-admin-full
   * Applications: +luci-app-firewall, +luci-app-upnp, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
-  * Protocols: "luci-proto-wireguard
-  * Libraries: nothing changed
+  * Protocols: +luci-proto-wireguard
 * Network:
   * VPN: +wireguard
-  * Webservers: +uhttpd
+  * Webservers: +uhttpd, +uhttpd-mod-ubus
+  * -uclient-fetch, +qrencode
