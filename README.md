@@ -40,8 +40,10 @@ swig time xsltproc zlib1g-dev
 
 ## 2. Available configurations
 
-* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, *+wireguard (if possible)*, *+muninlite (if possible)*
-* Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1
+* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, *+muninlite (if possible)*
+* Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1.
+
+***Note:** Cyrus builds can be considered end-of-life, as no new release will happen from OpenWRT. I recommend using the device images built on the 19.07.10 tag as they are the most stable and up-to-date.*
 
 ### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
 
@@ -55,7 +57,7 @@ Built on: Ubuntu 22.04
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
 * TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11) 
+* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
 #### 2.1.3. Changes from default (but compare it yourself)
@@ -68,7 +70,7 @@ Built on: Ubuntu 22.04
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6, -SECCOMP
 * Image configuration:
-  * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
+  * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
 * Base: -opkg, -ca-bundle, busybox:applets
   * Finding Utilities: -egrep, -fgrep
   * Int Utilities: -halt, -poweroff
@@ -81,7 +83,8 @@ Built on: Ubuntu 22.04
 * Luci: (the current state)
   * Collections: nothing selected
   * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
-  * Applications: +luci-app-firewall
+  * Applications: +luci-app-firewall, +luci-app-wireguard
+  * Protocols: +luci-proto-wireguard
   * Themes: +luci-theme-bootstrap
   * Libraries: -libuclient
 * Network:
@@ -105,7 +108,7 @@ Built on: Ubuntu 22.04
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
 * TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11) 
+* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
 #### 2.2.3. Changes from default (but compare it yourself)
@@ -116,7 +119,7 @@ Built on: Ubuntu 22.04
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
-  * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
+  * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
 * Base: -opkg, -ca-bundle, busybox:applets
   * Finding Utilities: -egrep, -fgrep
   * Int Utilities: -halt, -poweroff
@@ -153,7 +156,7 @@ Built on: Ubuntu 20.04.4
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
 * TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11) 
+* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
 #### 2.3.3. Changes from default (but compare it yourself)
@@ -164,7 +167,7 @@ Built on: Ubuntu 20.04.4
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
-  * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
+  * Version configuration options: Release distribution: Avitud; Support URL: this GitHub repository
 * Base: -opkg, -ca-bundle, busybox:applets
   * Finding Utilities: -egrep, -fgrep
   * Int Utilities: -halt, -poweroff
@@ -189,7 +192,9 @@ Built on: Ubuntu 20.04.4
 
 ### 2.4. Tiny-Cyrus build config for OpenWRT 19.07.x
 
-Built on: Ubuntu 20.04.4
+**End-of-life**
+
+Built on: Ubuntu 20.04.4; Tested on: TPLink TL-WR841ND v8;
 
 #### 2.4.1. Feeds changes
 
@@ -201,7 +206,7 @@ Built on: Ubuntu 20.04.4
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
 * TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11) 
+* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
 #### 2.4.3. Changes from default (but compare it yourself)
@@ -242,7 +247,7 @@ Built on: Ubuntu 20.04.4
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
 * TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11) 
+* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
 #### 2.5.3. Changes from default (but compare it yourself)

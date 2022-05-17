@@ -68,16 +68,19 @@ CONFIG_PACKAGE_liblucihttp-lua=y
 # CONFIG_PACKAGE_libpthread is not set
 CONFIG_PACKAGE_libubus-lua=y
 CONFIG_PACKAGE_libuci-lua=y
+# CONFIG_PACKAGE_libuclient is not set
 # CONFIG_PACKAGE_libucode is not set
 # CONFIG_PACKAGE_libustream-wolfssl is not set
 # CONFIG_PACKAGE_libwolfssl is not set
 CONFIG_PACKAGE_libxtables=y
 CONFIG_PACKAGE_lua=y
 CONFIG_PACKAGE_luci-app-firewall=y
+CONFIG_PACKAGE_luci-app-wireguard=y
 CONFIG_PACKAGE_luci-base=y
 CONFIG_PACKAGE_luci-i18n-base-hu=y
 CONFIG_PACKAGE_luci-i18n-dashboard-hu=y
 CONFIG_PACKAGE_luci-i18n-firewall-hu=y
+CONFIG_PACKAGE_luci-i18n-wireguard-hu=y
 CONFIG_PACKAGE_luci-lib-base=y
 CONFIG_PACKAGE_luci-lib-ip=y
 CONFIG_PACKAGE_luci-lib-jsonc=y
@@ -87,6 +90,7 @@ CONFIG_PACKAGE_luci-mod-dashboard=y
 CONFIG_PACKAGE_luci-mod-network=y
 CONFIG_PACKAGE_luci-mod-status=y
 CONFIG_PACKAGE_luci-mod-system=y
+CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_luci-theme-openwrt=y
 # CONFIG_PACKAGE_nftables-json is not set
 # CONFIG_PACKAGE_openwrt-keyring is not set
@@ -111,7 +115,6 @@ CONFIG_PKG_RELRO_PARTIAL=y
 # CONFIG_SIGNATURE_CHECK is not set
 # CONFIG_SIGNED_PACKAGES is not set
 CONFIG_STRIP_KERNEL_EXPORTS=y
-# CONFIG_TARGET_ROOTFS_INITRAMFS is not set
 CONFIG_USE_MKLIBS=y
 CONFIG_VERSIONOPT=y
 CONFIG_VERSION_BUG_URL=""
@@ -127,4 +130,3 @@ CONFIG_VERSION_PRODUCT=""
 CONFIG_VERSION_REPO="https://downloads.openwrt.org/releases/22.03.0-rc1"
 CONFIG_VERSION_SUPPORT_URL="https://github.com/gajdipajti/openwrt-build-configs"
 # CONFIG_WPA_WOLFSSL is not set
-CONFIG_PACKAGE_libuclient=y
