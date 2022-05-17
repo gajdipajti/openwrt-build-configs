@@ -22,13 +22,15 @@ I usually rebuild only tagged versions: *v18.06.1*, *v19.07.6*, *...*
 
 Reference: [3](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
 
-Ubuntu 22.04: 
-```
+Ubuntu 22.04:
+
+```sh
 sudo apt install build-essential gawk gcc-multilib flex git gettext libncurses5-dev libssl-dev python3-distutils zlib1g-dev
 ```
 
 Ubuntu 20.04.4:
-```
+
+```sh
 sudo apt install build-essential ccache ecj fastjar file g++ gawk \
 gettext git java-propose-classpath libelf-dev libncurses5-dev \
 libncursesw5-dev libssl-dev python python2.7-dev python3 unzip wget \
@@ -72,7 +74,7 @@ Built on: Ubuntu 22.04
   * Int Utilities: -halt, -poweroff
   * Linux System Utilities: -swapoff, -swapon
   * Miscellaneous Utilities: -less
-  * Shelly: ash optimize for size
+  * Shells: ash optimize for size
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
@@ -92,7 +94,7 @@ Built on: Ubuntu 22.04
 
 Built on: Ubuntu 22.04
 
-Tried gcc-7, gcc-8, and gcc-10; but gcc-8 gave me the smallest image.
+*Tried gcc-7, gcc-8, and gcc-10; but **gcc-8** gave me the smallest image.*
 
 #### 2.2.1. Feeds changes
 
@@ -174,7 +176,7 @@ Built on: Ubuntu 20.04.4
   * Network Support: -kmod-ppp, +kmod-wireguard
 * Luci: (the current state)
   * Collections: nothing selected
-  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
   * Protocols: +luci-proto-wireguard
@@ -216,7 +218,7 @@ Built on: Ubuntu 20.04.4
   * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
 * Luci: (the current state)
   * Collections: nothing selected
-  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
+  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-mod-admin-full, +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
   * Protocols: "luci-proto-wireguard
