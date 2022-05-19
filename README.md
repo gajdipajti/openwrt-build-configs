@@ -1,5 +1,8 @@
 # openwrt-build-configs
+
 A storage for my custom openwrt build config files, for small devices. Just to keep track of the changes. You can reuse them, change them, end even make suggestions how to lower the footprint and add more functionality.
+
+I recommend using the Cyrus-19.07.10 build, but the Avitus-21.02.3 is also good.
 
 ## 1. How to build
 
@@ -44,6 +47,8 @@ swig time xsltproc zlib1g-dev
 * Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1.
 
 ***Note:** Cyrus builds can be considered end-of-life, as no new release will happen from OpenWRT. I recommend using the device images built on the 19.07.10 tag as they are the most stable and up-to-date.*
+
+> ***Note:** Switching between builds: [link](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79)
 
 ### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
 
@@ -95,7 +100,10 @@ Built on: Ubuntu 22.04
 
 ### 2.2. Tiny-Avitus build config for OpenWRT 21.02.x
 
-Built on: Ubuntu 22.04
+* Built on: Ubuntu 22.04
+* Tested on: TPLink TL-WR841ND v9
+* Firmware version: Avitus 21.02.3 r16554-1d4dea6d4f / LuCI openwrt-21.02 branch git-22.083.69138-0a0ce2a
+* Kernel version: 5.4.188
 
 *Tried gcc-7, gcc-8, and gcc-10; but **gcc-8** gave me the smallest image.*
 
@@ -113,8 +121,6 @@ Built on: Ubuntu 22.04
 
 #### 2.2.3. Changes from default (but compare it yourself)
 
-> It could be built, but it was also oversized at first. Has not been flashed to any device yet. Maybe it will forget the configuration as there is not enough free space.
-
 * Target: ath79 + subtarget: tiny
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6
@@ -131,7 +137,7 @@ Built on: Ubuntu 22.04
   * Network Support: -kmod-ppp, +kmod-wireguard
 * Libraries: -libuclient, +libqrencode
 * Luci:
-  * Modules: +luci-base, +minify*, Translations: {hungarian, english}+luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-status, +luci-mod-system
+  * Modules: +luci-base, +minify*, Translations: {hungarian, english}, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
   * Protocols: +luci-proto-wireguard
@@ -144,9 +150,12 @@ Built on: Ubuntu 22.04
 
 ### 2.3. Tiny-Avitus build config for OpenWRT 19.07.10
 
-*This OpenWRT branch is **end-of-life**. I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration.  If I adjust my build configuration, then I will upload the changes just for comparison.*
+* Built on: Ubuntu 20.04.4
+* Tested on: TPLink TL-WR841ND v9 (+[migration](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79) from cyrus-ar71xx to avitus-ath79);
+* Firmware version: Avitus 19.07.10 r11427-9ce6aa9d8d / LuCI openwrt-19.07 branch git-22.099.58928-786ebc9
+* Kernel version: 4.14.275
 
-Built on: Ubuntu 20.04.4; Not tested!
+*This OpenWRT branch is **end-of-life** (?). I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration.  If I adjust my build configuration, then I will upload the changes just for comparison.*
 
 #### 2.3.1. Feeds changes
 
@@ -162,8 +171,6 @@ Built on: Ubuntu 20.04.4; Not tested!
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
 #### 2.3.3. Changes from default (but compare it yourself)
-
-> It could be built, but it was also oversized at first. Has not been flashed to any device yet. Maybe it will forget the configuration as there is not enough free space.
 
 * Target: ath79 + subtarget: tiny
 * Target Images: squashfs with 1024 Block size
@@ -195,11 +202,12 @@ Built on: Ubuntu 20.04.4; Not tested!
 
 ### 2.4. Tiny-Cyrus build config for OpenWRT 19.07.10
 
-*This OpenWRT branch is **end-of-life**. I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration.  If I adjust my build configuration, then I will upload the changes just for comparison.*
-
-* Built on: Ubuntu 20.04.4; Tested on: TPLink TL-WR841ND v8, v9;
+* Built on: Ubuntu 20.04.4
+* Tested on: TPLink TL-WR841ND v8, v9;
 * Firmware version: Cyrus 19.07.10 r11427-9ce6aa9d8d / LuCI openwrt-19.07 branch git-22.099.58928-786ebc9
 * Kernel version: 4.14.275
+
+*This OpenWRT branch is **end-of-life** (?). I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration.  If I adjust my build configuration, then I will upload the changes just for comparison.*
 
 #### 2.4.1. Feeds changes
 
@@ -241,11 +249,12 @@ Built on: Ubuntu 20.04.4; Not tested!
 
 ### 2.5. Tiny-Cyrus build config for OpenWRT 18.06.9
 
-*This OpenWRT branch is **end-of-life**. I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration. If I adjust my build configuration, then I will upload the changes just for comparison.*
-
-* Built on: Ubuntu 20.04.4; Tested on: TPLink TL-WR841ND v9;
+* Built on: Ubuntu 20.04.4
+* Tested on: TPLink TL-WR841ND v9
 * Firmware version: Cyrus 18.06.9 r8077-7cbbab7246 / LuCI openwrt-18.06 branch (git-20.319.49209-ab22243)
 * Kernel version: 4.9.243
+
+*This OpenWRT branch is **end-of-life**. I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration. If I adjust my build configuration, then I will upload the changes just for comparison.*
 
 #### 2.5.1. Feeds changes
 
