@@ -2,7 +2,7 @@
 
 A storage for my custom openwrt build config files, for small devices. Just to keep track of the changes. You can reuse them, change them, end even make suggestions how to lower the footprint and add more functionality.
 
-I recommend using the Cyrus-19.07.10 build, but the Avitus-21.02.3 is also good.
+I recommend using the Cyrus-19.07.10 build, but the Avitus-21.02.3 is also good. But for Avitud I personally recommend stopping the uhttpd service.
 
 ## 1. How to build
 
@@ -44,160 +44,15 @@ swig time xsltproc zlib1g-dev
 ## 2. Available configurations
 
 * Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, *+muninlite (if possible)*
+  * [Avitus OpenWRT 22.03.0-rc1](./tiny-avitus-22.03/README.md)
+  * [Avitus OpenWRT 21.02.3](./tiny-avitus-21.02/README.md)
+  * [Avitus OpenWRT 19.07.10](./tiny-avitus-19.07/README.md)
 * Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1.
   * [Cyrus OpenWRT 19.07.10](./tiny-cyrus-19.07/README.md)
   * [Cyrus OpenWRT 18.06.9](./tiny-cyrus-18.06/README.md)
+* ApolloDiomedes - same as Avitus, but backported dropbear commits.
+* DavianThule - same as Cyrus, but backported dropbear commits.
 
 ***Note:** Cyrus builds can be considered end-of-life, as no new release will happen from OpenWRT. I recommend using the device images built on the 19.07.10 tag as they are the most stable and up-to-date.*
 
 > ***Note:** Switching between builds: [link](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79)
-
-### 2.1. Tiny-Avitus build config for OpenWRT 22.03.x
-
-Built on: Ubuntu 22.04
-
-#### 2.1.1. Feeds changes
-
-* telephony: removed
-
-#### 2.1.2. Selected devices
-
-* TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
-* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
-* TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
-
-#### 2.1.3. Changes from default (but compare it yourself)
-
-> Initial build, but it could barely fit. I had to remove wireguard and muninlite support. I had to strip busybox a bit (poweroff, halt, swapon, swapoff,fgrep,egrep).
->
-> It might forget the configuration, because of free space limitations.
-
-* Target: ath79 + subtarget: tiny
-* Target Images: squashfs with 1024 Block size
-* Global build settings: small changes, mostly stripping and removing IPv6, -SECCOMP
-* Image configuration:
-  * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
-* Base: -opkg, -ca-bundle, busybox:applets
-  * Finding Utilities: -egrep, -fgrep
-  * Int Utilities: -halt, -poweroff
-  * Linux System Utilities: -swapoff, -swapon
-  * Miscellaneous Utilities: -less
-  * Shells: ash optimize for size
-* Administration: +muninlite
-* Kernel modules:
-  * Network Support: -kmod-ppp, +kmod-wireguard
-* Luci: (the current state)
-  * Collections: nothing selected
-  * Modules: +luci-base, +minify*, Translations: hungarian, +luci-compat, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-rpc, +luci-mod-status, +luci-mod-system
-  * Applications: +luci-app-firewall, +luci-app-wireguard
-  * Protocols: +luci-proto-wireguard
-  * Themes: +luci-theme-bootstrap
-  * Libraries: -libuclient
-* Network:
-  * VPN: +wireguard-tools
-  * Webservers: +uhttpd
-  * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
-  * -uclient-fetch
-
-### 2.2. Tiny-Avitus build config for OpenWRT 21.02.x
-
-* Built on: Ubuntu 22.04
-* Tested on: TPLink TL-WR841ND v9
-* Firmware version: Avitus 21.02.3 r16554-1d4dea6d4f / LuCI openwrt-21.02 branch git-22.083.69138-0a0ce2a
-* Kernel version: 5.4.188
-
-*Tried gcc-7, gcc-8, and gcc-10; but **gcc-8** gave me the smallest image.*
-
-#### 2.2.1. Feeds changes
-
-* packages: https://github.com/gajdipajti/packages/tree/openwrt-21.02 (backported muninlite from master)
-* telephony: removed
-
-#### 2.2.2. Selected devices
-
-* TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
-* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
-* TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
-
-#### 2.2.3. Changes from default (but compare it yourself)
-
-* Target: ath79 + subtarget: tiny
-* Target Images: squashfs with 1024 Block size
-* Global build settings: small changes, mostly stripping and removing IPv6
-* Image configuration:
-  * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
-* Base: -opkg, -ca-bundle, +dropbear:ecc,ecc_full,ed25519, busybox:applets
-  * Finding Utilities: -egrep, -fgrep
-  * Int Utilities: -halt, -poweroff
-  * Linux System Utilities: -swapoff, -swapon
-  * Miscellaneous Utilities: -less
-  * Shells: ash optimize for size
-* Administration: +muninlite
-* Kernel modules:
-  * Network Support: -kmod-ppp, +kmod-wireguard
-* Libraries: -libuclient, +libqrencode
-* Luci:
-  * Modules: +luci-base, +minify*, Translations: {hungarian, english}, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-status, +luci-mod-system
-  * Applications: +luci-app-firewall, +luci-app-wireguard
-  * Themes: +luci-theme-bootstrap
-  * Protocols: +luci-proto-wireguard
-* Network:
-  * VPN: +wireguard-tools
-  * Webservers: +uhttpd, +uhttpd-mod-ubus
-  * WirelessAPD: -wpad-basic-wolfssl, +wpad-mini
-  * -uclient-fetch
-* Utilities: +qrencode
-
-### 2.3. Tiny-Avitus build config for OpenWRT 19.07.10
-
-* Built on: Ubuntu 20.04.4
-* Tested on: TPLink TL-WR841ND v9 (+[migration](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79) from cyrus-ar71xx to avitus-ath79);
-* Firmware version: Avitus 19.07.10 r11427-9ce6aa9d8d / LuCI openwrt-19.07 branch git-22.099.58928-786ebc9
-* Kernel version: 4.14.275
-
-*This OpenWRT branch is **end-of-life** (?). I don't backport security fixes and changes as I don't have a fork of the main repository. I only build tagged releases with custom configuration.  If I adjust my build configuration, then I will upload the changes just for comparison.*
-
-#### 2.3.1. Feeds changes
-
-* packages: https://github.com/gajdipajti/packages/tree/openwrt-19.07 (backported muninlite from master)
-* telephony: removed
-* freifunk: removed
-
-#### 2.3.2. Selected devices
-
-* TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
-* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
-* TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
-* TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
-
-#### 2.3.3. Changes from default (but compare it yourself)
-
-* Target: ath79 + subtarget: tiny
-* Target Images: squashfs with 1024 Block size
-* Global build settings: small changes, mostly stripping and removing IPv6
-* Image configuration:
-  * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
-* Base: -opkg, -ca-bundle, -busybox:
-  * Finding Utilities: -egrep, -fgrep
-  * Int Utilities: -halt, -poweroff
-  * Linux System Utilities: -swapoff, -swapon
-  * Miscellaneous Utilities: -less
-  * Shells: ash optimize for size
-* Administration: +muninlite
-* Kernel modules:
-  * Network Support: -kmod-ppp, +kmod-wireguard
-  * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
-  * Wireless Drivers: -ath-dfs, -mac80211-mesh
-* Libraries: -libuclient, +libqrencode
-* Luci:
-  * Modules: +luci-base, +minify*, Translations: {hungarian, english}, +luci-mod-admin-full, +luci-mod-network, +luci-mod-status, +luci-mod-system
-  * Applications: +luci-app-firewall, +luci-app-wireguard
-  * Themes: +luci-theme-bootstrap
-  * Protocols: +luci-proto-wireguard
-* Network:
-  * VPN: +wireguard, +wireguard-tools
-  * Webservers: +uhttpd, +uhttpd-mod-ubus
-  * -uclient-fetch
-* Utilities: +qrencode
