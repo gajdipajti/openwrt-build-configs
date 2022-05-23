@@ -9,16 +9,17 @@
 
 ## 0. Notes
 
-For this custom build I won't fork the **openwrt-19.07** branch to backport fixes. Cyrus is only built using tagged openwrt releases, but with custom configuration and feeds. 
-But you can check the **DavianThule** custom build which is built from the forked **openwrt-19.07** branch to fix the errata.
+For this custom build I won't fork the **openwrt-19.07** branch to backport fixes. Cyrus is only built using tagged openwrt releases, but with custom configuration and feeds.
 
 Errata:
 
 * Due to a change in openssh you cannot connect to this version of dropbear. The error message is: ```no matching host key type found. Their offer: ssh-rsa``` To fix this add ```HostKeyAlgorithms +ssh-rsa``` to the ```/etc/ssh/ssh_config``` on your client (Ubuntu, Fedora, ...)
+  * This is should be fixed by enabling **dropbear:ecc,full_ecc** build option.
+* There is a bug in the dropbear makefile which can occur when rebuilding with different ecc configuration. Can be fixed by cherry-picking the [fix](https://github.com/openwrt/openwrt/commit/289d532ddd9427a9071d85966d38fff9d78837bd) from master: ```git cherry-pick 289d532ddd9427a9071d85966d38fff9d78837bd```
 
 ## 1. Feeds changes
 
-* packages: https://github.com/gajdipajti/packages/tree/openwrt-19.07 (backported muninlite from master)
+* packages: [gajdipajti/packages](https://github.com/gajdipajti/packages/tree/openwrt-19.07) (backported muninlite from master)
 * telephony: removed
 * freifunk: removed
 
@@ -36,7 +37,7 @@ Errata:
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
   * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
-* Base: -opkg, -busybox:[swapon, swapoff]
+* Base: -opkg, +dropbear:ecc, full_ecc, compression
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard

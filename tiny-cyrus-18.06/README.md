@@ -14,10 +14,28 @@ For this custom build I won't fork the **openwrt-18.06** branch to backport fixe
 Errata:
 
 * Due to a change in openssh you cannot connect to this version of dropbear. The error message is: ```no matching host key type found. Their offer: ssh-rsa``` To fix this add ```HostKeyAlgorithms +ssh-rsa``` to the ```/etc/ssh/ssh_config``` on your client (Ubuntu, Fedora, ...)
+  * This is fixed by enabling **dropbear:ecc** build option. However the keyfile is not checked in the config.
+
+### 0.1. Elliptic Curve Cryptography fix
+
+```diff
+diff --git a/package/network/services/dropbear/Makefile b/package/network/services/dropbear/Makefile
+index 9127651ef9..c81ccb0177 100644
+--- a/package/network/services/dropbear/Makefile
++++ b/package/network/services/dropbear/Makefile
+@@ -60,6 +60,7 @@ define Package/dropbear/description
+ endef
+
+ define Package/dropbear/conffiles
++$(if $(CONFIG_DROPBEAR_ECC),/etc/dropbear/dropbear_ecdsa_host_key)
+ /etc/dropbear/dropbear_rsa_host_key
+ /etc/config/dropbear
+ endef
+```
 
 ## 1. Feeds changes
 
-* packages: https://github.com/gajdipajti/packages/tree/openwrt-18.06 (backported muninlite from master)
+* packages: [gajdipajti/packages](https://github.com/gajdipajti/packages/tree/openwrt-18.06) (backported muninlite from master)
 * telephony: removed
 
 ## 2. Selected devices
@@ -34,7 +52,7 @@ Errata:
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
   * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
-* Base: -opkg, +dropbear:ecc, -busybox:[swapon, swapoff]
+* Base: -opkg, +dropbear:ecc
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard

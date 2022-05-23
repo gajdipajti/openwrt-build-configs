@@ -11,11 +11,11 @@
 
 Errata:
 
-* Because of high memory usage it is recommended to stop the uhttpd service.
+* Because of high memory usage it is recommended to stop the **uhttpd** service.
 
 ## 1. Feeds changes
 
-* packages: https://github.com/gajdipajti/packages/tree/openwrt-21.02 (backported muninlite from master)
+* packages: [gajdipajti/packages](https://github.com/gajdipajti/packages/tree/openwrt-21.02) (but the main repository can be also used)
 * telephony: removed
 
 #### 2.2.2. Selected devices
@@ -33,7 +33,6 @@ Errata:
 * Image configuration:
   * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
 * Base: -opkg, -ca-bundle, +dropbear:ecc,ecc_full,ed25519, busybox:applets
-  * Finding Utilities: -egrep, -fgrep
   * Int Utilities: -halt, -poweroff
   * Linux System Utilities: -swapoff, -swapon
   * Miscellaneous Utilities: -less
