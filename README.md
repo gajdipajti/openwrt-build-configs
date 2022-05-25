@@ -46,12 +46,13 @@ swig time xsltproc zlib1g-dev
 
 ## 2. Available configurations
 
-* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, -wolfssl, +Luci, +uhttp, +wireguard, *+muninlite (if possible)*
+* Avitus testing: the previous Avitus config won't fit. I don't recommend using this.
   * [Avitus OpenWRT 22.03.0-rc1](./tiny-avitus-22.03/README.md)
-  * [Avitus OpenWRT 21.02.3](./tiny-avitus-21.02/README.md)
+* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, -wolfssl, -ca-bundles, +Luci, +uhttp, +wireguard, +muninlite, +w1.
+  * [Avitus OpenWRT 21.02.3](./tiny-avitus-21.02/README.md) - This build is the most up-to-date which can run on the devices. However **uhttpd** needs to be stopped or disabled after configuration.
   * [Avitus OpenWRT 19.07.10](./tiny-avitus-19.07/README.md)
 * Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1.
-  * [Cyrus OpenWRT 19.07.10](./tiny-cyrus-19.07/README.md)
+  * [Cyrus OpenWRT 19.07.10](./tiny-cyrus-19.07/README.md) - I recommend using this build.
   * [Cyrus OpenWRT 18.06.9](./tiny-cyrus-18.06/README.md)
 
 ***Note:** Cyrus builds can be considered end-of-life, as no new release will happen from OpenWRT. I recommend using the device images built on the 19.07.10 tag as they are the most stable and up-to-date.*
@@ -59,6 +60,8 @@ swig time xsltproc zlib1g-dev
 > ***Note:** Switching between builds: [link](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79)
 
 ## 3. External resources
+
+These are the repositories that I am using for the build. If there is an errata which is not fixed in the openwrt repository (**eol**), then the fix is cherry-picked into my branch. No other change. In case of packages, I cherry-picked the **muninlite** changes.
 
 * [openwrt/openwrt](https://github.com/openwrt/openwrt)
 * [gajdipajti/cherry-pick-fs-2275](https://github.com/gajdipajti/openwrt/tree/cherry-pick-fs-2275) - cherry picked dropbear:ecc rebuild fix for the openwrt-19.07 branch.
