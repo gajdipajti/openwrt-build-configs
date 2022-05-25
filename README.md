@@ -61,6 +61,7 @@ swig time xsltproc zlib1g-dev
 ## 3. External resources
 
 * [openwrt/openwrt](https://github.com/openwrt/openwrt)
-* [gajdipajti/openwrt-19.07](https://github.com/gajdipajti/openwrt/tree/openwrt-19.07)
+* [gajdipajti/cherry-pick-fs-2275](https://github.com/gajdipajti/openwrt/tree/cherry-pick-fs-2275) - cherry picked dropbear:ecc rebuild fix for the openwrt-19.07 branch.
+* [gajdipajti/cherry-pick-efc533c](https://github.com/gajdipajti/openwrt/tree/cherry-pick-eccfix) - cherry picked dropbear enable ecc host key use for the openwrt-18.06 branch.
 * [openwrt/packages](https://github.com/openwrt/packages)
-* [gajdipajti/packages](https://github.com/gajdipajti/packages)
+* [gajdipajti/packages](https://github.com/gajdipajti/packages) - cherry picked muninlite for openwrt-18.06 and openwrt-19.07 

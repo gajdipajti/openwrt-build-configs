@@ -5,32 +5,19 @@
 * Firmware version: Cyrus 18.06.9 r8077-7cbbab7246 / LuCI openwrt-18.06 branch (git-20.319.49209-ab22243)
 * Kernel version: 4.9.243
 
-*This OpenWRT branch is **end-of-life**.*
-
 ## 0. Notes
-
-For this custom build I won't fork the **openwrt-18.06** branch to backport fixes. Cyrus is only built using tagged openwrt releases, but with custom configuration and feeds.
 
 Errata:
 
 * Due to a change in openssh you cannot connect to this version of dropbear. The error message is: ```no matching host key type found. Their offer: ssh-rsa``` To fix this add ```HostKeyAlgorithms +ssh-rsa``` to the ```/etc/ssh/ssh_config``` on your client (Ubuntu, Fedora, ...)
-  * This is fixed by enabling **dropbear:ecc** build option. However the keyfile is not checked in the config.
+  1. This should fixed by enabling **dropbear:ecc** build option. However the keyfile is not checked when built from **openwrt-18.06** branch.
+  2. Fixed by the commit: [efc533c](https://github.com/openwrt/openwrt/commit/efc533cc2ff7ec99595727c4990b1fed006794ea)
+  3. This commit is backported to [gajdipajti/cherry-pick-efc533c](https://github.com/gajdipajti/openwrt/tree/cherry-pick-eccfix) branch (branched from **openwrt-18.06**).
 
-### 0.1. Elliptic Curve Cryptography fix
+*This OpenWRT branch is **end-of-life**. This bug won't be fixed on the **openwrt-18.06** branch. However you can use my cherry-picked branch [gajdipajti/cherry-pick-efc533c](https://github.com/gajdipajti/openwrt/tree/cherry-pick-eccfix) to fix the errata.*
 
-```diff
-diff --git a/package/network/services/dropbear/Makefile b/package/network/services/dropbear/Makefile
-index 9127651ef9..c81ccb0177 100644
---- a/package/network/services/dropbear/Makefile
-+++ b/package/network/services/dropbear/Makefile
-@@ -60,6 +60,7 @@ define Package/dropbear/description
- endef
-
- define Package/dropbear/conffiles
-+$(if $(CONFIG_DROPBEAR_ECC),/etc/dropbear/dropbear_ecdsa_host_key)
- /etc/dropbear/dropbear_rsa_host_key
- /etc/config/dropbear
- endef
+```sh
+git clone --branch cherry-pick-efc533c git@github.com:gajdipajti/openwrt.git
 ```
 
 ## 1. Feeds changes
