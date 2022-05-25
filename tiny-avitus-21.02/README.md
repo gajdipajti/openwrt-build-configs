@@ -11,7 +11,7 @@
 
 Errata:
 
-* Because of high memory usage it is recommended to stop the **uhttpd** service.
+* Because of high memory usage it is recommended to stop the **uhttpd** service after initial configuration.
 
 ## 1. Feeds changes
 
@@ -32,14 +32,11 @@ Errata:
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
   * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
-* Base: -opkg, -ca-bundle, +dropbear:ecc,ecc_full,ed25519, busybox:applets
-  * Int Utilities: -halt, -poweroff
-  * Linux System Utilities: -swapoff, -swapon
-  * Miscellaneous Utilities: -less
-  * Shells: ash optimize for size
+* Base: -opkg, -ca-bundle, +dropbear:ecc,ecc_full
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
+  * W1-support: +kmod-w1, +kmod-w1-master-gpio, +kmod-w1-slave-therm
 * Libraries: -libuclient, +libqrencode
 * Luci:
   * Modules: +luci-base, +minify*, Translations: {hungarian, english}, +luci-mod-admin-full, +luci-dashboard +luci-mod-network, +luci-mod-status, +luci-mod-system
