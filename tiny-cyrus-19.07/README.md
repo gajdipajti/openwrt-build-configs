@@ -1,7 +1,7 @@
 # Tiny-Cyrus build config for OpenWRT 19.07.10
 
 * Built on: Ubuntu 20.04.4
-* Tested on: TPLink TL-WR841ND v8, v9;
+* Tested on: TPLink TL-WR841ND v8, v9; *TL-WR941ND v3* - but had issues.
 * Firmware version: Cyrus 19.07.10 r11427-9ce6aa9d8d / LuCI openwrt-19.07 branch git-22.099.58928-786ebc9
 * Kernel version: 4.14.275
 
@@ -14,6 +14,7 @@ Errata:
   * However there is a [bug](https://github.com/openwrt/openwrt/issues/6157) in the dropbear makefile which can be hit when rebuilding with different ecc configuration.
   * It can be fixed by cherry-picking the [fix](https://github.com/openwrt/openwrt/commit/289d532ddd9427a9071d85966d38fff9d78837bd) when you run into the dropbear compilation error. After this start the build again.
   * Or you can use my branch.
+* **TL-WR941ND v3** had WiFi stability issues. Maybe it was due to channel collision.
 
 *This OpenWRT branch is **[end-of-life](https://lists.infradead.org/pipermail/openwrt-announce/2022-April/000027.html)**. This bug [won't be fixed on the **openwrt-19.07**](https://github.com/openwrt/openwrt/pull/9910) branch. However you can use my cherry-picked branch [gajdipajti/cherry-pick-fs-2275](https://github.com/gajdipajti/openwrt/tree/cherry-pick-fs-2275) to fix the errata.*
 

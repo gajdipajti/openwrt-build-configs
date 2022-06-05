@@ -14,6 +14,7 @@ Errata:
   * However there is a [bug](https://github.com/openwrt/openwrt/issues/6157) in the dropbear makefile which can be hit when rebuilding with different ecc configuration.
   * It can be fixed by cherry-picking the [fix](https://github.com/openwrt/openwrt/commit/289d532ddd9427a9071d85966d38fff9d78837bd) when you run into the dropbear compilation error. After this start the build again.
   * Or you can use my branch.
+* A possible instability on TL-WR941ND v3 devices. No fix currently.
 
 *This OpenWRT branch is **[end-of-life](https://lists.infradead.org/pipermail/openwrt-announce/2022-April/000027.html)**. This bug [won't be fixed on the **openwrt-19.07**](https://github.com/openwrt/openwrt/pull/9910) branch. However you can use my cherry-picked branch [gajdipajti/cherry-pick-fs-2275](https://github.com/gajdipajti/openwrt/tree/cherry-pick-fs-2275) to fix the errata.*
 
