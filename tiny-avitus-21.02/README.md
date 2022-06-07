@@ -1,7 +1,7 @@
 # Tiny-Avitus build config for OpenWRT 21.02.x
 
 * Built on: Ubuntu 22.04
-* Tested on: TPLink TL-WR841ND v9; TL-WR941ND v3 (+[migration](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79) from cyrus-ar71xx to avitus-ath79);
+* Tested on: TPLink TL-WR740N v4; TL-WR841ND v9; TL-WR941ND v3 (+[migration](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79) from cyrus-ar71xx to avitus-ath79);
 * Firmware version: Avitus 21.02.3 r16554-1d4dea6d4f / LuCI openwrt-21.02 branch git-22.083.69138-0a0ce2a
 * Kernel version: 5.4.188
 

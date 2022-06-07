@@ -1,7 +1,7 @@
 # Tiny-Cyrus build config for OpenWRT 18.06.9
 
 * Built on: Ubuntu 20.04.4
-* Tested on: TPLink TL-WR841ND v9, TL-WR941ND v3
+* Tested on: TPLink TL-WR740N v4; TL-WR841ND v9; TL-WR941ND v3;
 * Firmware version: Cyrus 18.06.9 r8077-7cbbab7246 / LuCI openwrt-18.06 branch (git-20.319.49209-ab22243)
 * Kernel version: 4.9.243
 
@@ -13,7 +13,7 @@ Errata:
   1. This should fixed by enabling **dropbear:ecc** build option. However the keyfile is not checked when built from **openwrt-18.06** branch.
   2. Fixed by the commit: [efc533c](https://github.com/openwrt/openwrt/commit/efc533cc2ff7ec99595727c4990b1fed006794ea)
   3. This commit is backported to [gajdipajti/cherry-pick-efc533c](https://github.com/gajdipajti/openwrt/tree/cherry-pick-eccfix) branch (branched from **openwrt-18.06**).
-  4. Maybe it is fixed.
+  4. Maybe it is fixed. Maybe it is not.
 
 *This OpenWRT branch is **end-of-life**. This bug won't be fixed on the **openwrt-18.06** branch. However you can use my cherry-picked branch [gajdipajti/cherry-pick-efc533c](https://github.com/gajdipajti/openwrt/tree/cherry-pick-eccfix) to fix the errata.*
 

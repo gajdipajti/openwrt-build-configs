@@ -2,7 +2,25 @@
 
 A storage for my custom openwrt build config files, for small devices. Just to keep track of the changes. You can reuse them, change them, end even make suggestions how to lower the footprint and add more functionality. The main idea is that each build should have **Luci**, **wireguard**, **muninlite** for ease of configuration, access and monitoring.
 
-I recommend using the Cyrus-19.07.10 build, or for better ssh the DavianThule-19.07.10.999. The Avitus-21.02.3 is also good, but I personally recommend stopping the **uhttpd** webserver service from Luci (or disabling it completely).
+I recommend using the **Cyrus-19.07.10** build, or for better ssh the **Cyrus-19.07.11** build from my github repository. The **Avitus-21.02.3** is also good, but I personally recommend stopping the **uhttpd** webserver service from Luci (or disabling it completely).
+
+## 0. Personal notes about the openwrt-19.07 branch
+
+I wasn't able to ssh into some of my old *19.07.10* devices after switching to Ubuntu 22.04 because the rsa host keys were not supported anymore. I tried [cherry-picking some fixes](https://github.com/openwrt/openwrt/pull/9910) however at that time I did not realize that the *openwrt-19.07* branch is [end-of-life](https://lists.infradead.org/pipermail/openwrt-announce/2022-April/000027.html) and closed.
+
+At the end I decided to cherry-pick 5 dropbear commits and create my own tagged release. And again, just to emphasize:
+
+> This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
+
+### 0.1. Errata
+
+* Due to a change in openssh you cannot connect to this version of dropbear. The error message is: ```no matching host key type found. Their offer: ssh-rsa``` To fix this add ```HostKeyAlgorithms +ssh-rsa``` to the ```/etc/ssh/ssh_config``` on your client (Ubuntu, Fedora, ...)
+  * **FIX**: Cherry pick 5 dropbear changes and tag is as v19.07.11
+  * [changes](https://github.com/openwrt/openwrt/compare/openwrt-19.07...gajdipajti:openwrt-19.07)
+
+### 0.2. How to access old configs
+
+* [tiny-1.1](https://github.com/gajdipajti/openwrt-build-configs/tree/tiny-v1.17)
 
 ## 1. How to build
 
@@ -24,7 +42,17 @@ Steps in general:
 Or 1&3 in one step from GitHub:
 * ```git clone --branch openwrt-19.07 git@github.com:openwrt/openwrt.git```
 
-### 1.1. Build systems
+### 1.1. For v19.07.11 see the readme in subfolders
+
+> This is NOT and official OpenWRT release.
+
+1. ```git clone git@github.com:gajdipajti/openwrt.git --branch v19.07.11 --single-branch```
+2. ```cd openwrt```
+3. not needed
+4. not needed
+5. ...
+
+### 1.2. Build systems
 
 Reference: [3](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
 
@@ -48,23 +76,24 @@ swig time xsltproc zlib1g-dev
 
 * Avitus testing: the previous Avitus config won't fit. I don't recommend using this.
   * [Avitus OpenWRT 22.03.0-rc1](./tiny-avitus-22.03/README.md)
-* Avitus build configuration: ath79/tiny, -IPv6, -PPP, -opkg, -wolfssl, -ca-bundles, +Luci, +uhttp, +wireguard, +muninlite, +w1.
+* Avitus build configuration: **ath79/tiny**, -IPv6, -PPP, -opkg, -wolfssl, -ca-bundles, +Luci, +uhttp, +wireguard, +muninlite, +w1.
   * [Avitus OpenWRT 21.02.3](./tiny-avitus-21.02/README.md) - This build is the most up-to-date which can run on the devices. However **uhttpd** needs to be stopped or disabled after configuration.
-  * [Avitus OpenWRT 19.07.10](./tiny-avitus-19.07/README.md)
-* Cyrus build configuration: ar7xxx/tiny, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1.
-  * [Cyrus OpenWRT 19.07.10](./tiny-cyrus-19.07/README.md) - I recommend using this build.
+  * [Avitus OpenWRT 19.07.11](./tiny-avitus-19.07/README.md)
+* Cyrus build configuration: **ar7xxx/tiny**, -IPv6, -PPP, -opkg, +Luci, +uhttp, +wireguard, +muninlite, +w1.
+  * [Cyrus OpenWRT 19.07.11](./tiny-cyrus-19.07/README.md) - I recommend using this build.
   * [Cyrus OpenWRT 18.06.9](./tiny-cyrus-18.06/README.md)
 
-***Note:** Cyrus builds can be considered end-of-life, as no new release will happen from OpenWRT. I recommend using the device images built on the 19.07.10 tag as they are the most stable and up-to-date.*
+***Note:** Cyrus builds can be considered end-of-life, as no new release will happen from OpenWRT. I recommend using the device images built on the 19.07.11 tag as they are the most stable and up-to-date.*
 
 > ***Note:** Switching between builds: [link](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79)
 
 ## 3. External resources
 
-These are the repositories that I am using for the build. If there is an errata which is not fixed in the openwrt repository (**eol**), then the fix is cherry-picked into my branch. No other change. In case of packages, I cherry-picked the **muninlite** changes.
+These are the repositories that I am using for the build. If there is an errata which is not fixed in the **openwrt/openwrt** repository (**eol**), then possible fixs are cherry-picked into my branches. No other change. In case of packages, I cherry-picked the **muninlite** changes.
 
 * [openwrt/openwrt](https://github.com/openwrt/openwrt)
-* [gajdipajti/cherry-pick-fs-2275](https://github.com/gajdipajti/openwrt/tree/cherry-pick-fs-2275) - cherry picked dropbear:ecc rebuild fix for the openwrt-19.07 branch.
-* [gajdipajti/cherry-pick-efc533c](https://github.com/gajdipajti/openwrt/tree/cherry-pick-eccfix) - cherry picked dropbear enable ecc host key use for the openwrt-18.06 branch.
-* [openwrt/packages](https://github.com/openwrt/packages)
-* [gajdipajti/packages](https://github.com/gajdipajti/packages) - cherry picked muninlite for openwrt-18.06 and openwrt-19.07 
+* [gajdipajti/openwrt-19.07](https://github.com/gajdipajti/openwrt/tree/openwrt-19.07) - with **v19.07.11** tag
+* [gajdipajti/cherry-pick-fs-2275](https://github.com/gajdipajti/openwrt/tree/cherry-pick-fs-2275) - cherry picked dropbear:ecc rebuild fix for the **openwrt-19.07** branch. - but it is not enough.
+* [gajdipajti/cherry-pick-efc533c](https://github.com/gajdipajti/openwrt/tree/cherry-pick-eccfix) - cherry picked dropbear enable ecc host key use for the **openwrt-18.06** branch. - but it is not working as expected.
+* [openwrt/packages](https://github.com/openwrt/packages) - it includes the cherry-picked **muninlite** commits from **master** for the **openwrt-19.07** branch.
+* [gajdipajti/packages](https://github.com/gajdipajti/packages) - cherry picked muninlite for **openwrt-18.06** and **openwrt-19.07** 

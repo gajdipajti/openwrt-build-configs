@@ -1,32 +1,46 @@
-# Tiny-Avitus build config for OpenWRT 19.07.10
+# Tiny-Avitus build config for OpenWRT 19.07.11
+
+> This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
 
 * Built on: Ubuntu 20.04.4
-* Tested on: TPLink TL-WR841ND v9 (+[migration](https://openwrt.org/docs/guide-user/installation/ar71xx.to.ath79) from cyrus-ar71xx to avitus-ath79);
-* Firmware version: Avitus 19.07.10 r11427-9ce6aa9d8d / LuCI openwrt-19.07 branch git-22.099.58928-786ebc9
+* Tested on: TPLink TL-WR740N v4; Past problems: WR940ND v3;
+* Firmware version: Cyrus 19.07.11 r11435-15432053ab / LuCI openwrt-19.07 branch git-22.115.68448-712bc8e
 * Kernel version: 4.14.275
 
 ## 0. Notes
 
-Errata:
+I wasn't able to ssh into some of my old *19.07.10* devices after switching to Ubuntu 22.04 because the rsa host keys were not supported anymore. I tried [cherry-picking some fixes](https://github.com/openwrt/openwrt/pull/9910) however at that time I did not realize that the *openwrt-19.07* branch is [end-of-life](https://lists.infradead.org/pipermail/openwrt-announce/2022-April/000027.html) and closed.
+
+At the end I decided to cherry-pick 5 dropbear commits and create my own tagged release. And again, just to emphasize:
+
+> This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
+
+### 0.1. Changelog
+
+Changes from v19.07.10..v19.07.11:
+
+* [**openwrt**](https://github.com/openwrt/openwrt/compare/openwrt-19.07...gajdipajti:openwrt-19.07): Cherry-picked dropbear fixes and changes from the *openwrt-21.03* branch to support new hostkeys.
+* **packages**: Cherry-picked muinlite changes from *master* to support new features.
+* **feeds**: changed feeds from git.openwrt.org to github.com. Removed *telephony* and *freifunk*.
+* other contributions.
+
+### 0.2. Errata
 
 * Due to a change in openssh you cannot connect to this version of dropbear. The error message is: ```no matching host key type found. Their offer: ssh-rsa``` To fix this add ```HostKeyAlgorithms +ssh-rsa``` to the ```/etc/ssh/ssh_config``` on your client (Ubuntu, Fedora, ...)
-  * This can be fixed by enabling **dropbear:ecc** build option.
-  * However there is a [bug](https://github.com/openwrt/openwrt/issues/6157) in the dropbear makefile which can be hit when rebuilding with different ecc configuration.
-  * It can be fixed by cherry-picking the [fix](https://github.com/openwrt/openwrt/commit/289d532ddd9427a9071d85966d38fff9d78837bd) when you run into the dropbear compilation error. After this start the build again.
-  * Or you can use my branch.
-* A possible instability on TL-WR941ND v3 devices. No fix currently.
+  * This is fixed by cherry-picked dropbear commits.
+* A possible WiFi instability on a TL-WR941ND v3 device.
+  * Maybe it is related to a channel collision. I don't know how to fix it.
+  * After switching the device to tiny-avitus-21.03 there was no error.
 
-*This OpenWRT branch is **[end-of-life](https://lists.infradead.org/pipermail/openwrt-announce/2022-April/000027.html)**. This bug [won't be fixed on the **openwrt-19.07**](https://github.com/openwrt/openwrt/pull/9910) branch. However you can use my cherry-picked branch [gajdipajti/cherry-pick-fs-2275](https://github.com/gajdipajti/openwrt/tree/cherry-pick-fs-2275) to fix the errata.*
+### 0.3. Accessing old version
 
-```sh
-git clone --branch cherry-pick-fs-2275 git@github.com:gajdipajti/openwrt.git
+* [tiny-1.1](https://github.com/gajdipajti/openwrt-build-configs/tree/tiny-v1.17)
+
+## 1. How to clone the openwrt repository to build v19.07.11
+
+```bash
+git clone git@github.com:gajdipajti/openwrt.git --branch v19.07.11 --single-branch
 ```
-
-## 1. Feeds changes
-
-* packages: [gajdipajti/packages](https://github.com/gajdipajti/packages/tree/openwrt-19.07) (backported muninlite from master)
-* telephony: removed
-* freifunk: removed
 
 ## 2. Selected devices
 
@@ -42,7 +56,7 @@ git clone --branch cherry-pick-fs-2275 git@github.com:gajdipajti/openwrt.git
 * Global build settings: small changes, mostly stripping and removing IPv6
 * Image configuration:
   * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
-* Base: -opkg, +dropbear:ecc, full_ecc
+* Base: -opkg, +dropbear:ecc, full_ecc, chacha20poly1305, curve25519, ed25519
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
