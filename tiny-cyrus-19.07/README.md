@@ -71,5 +71,6 @@ git clone git@github.com:gajdipajti/openwrt.git --branch v19.07.11 --single-bran
 * Network:
   * VPN: +wireguard, +wireguard-tools
   * Webservers: +uhttpd, +uhttpd-mod-ubus
-  * -uclient-fetch
-* Utilities: +qrencode
+* Utilities:
+  * +logrotate
+  * +qrencode
