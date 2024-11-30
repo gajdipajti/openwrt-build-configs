@@ -56,15 +56,18 @@ Or 1&3 in one step from GitHub:
 
 Reference: [3](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
 
-Ubuntu 24.04:
+Ubuntu 24.04: 
+
 ```sh
 sudo apt install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-setuptools rsync swig unzip zlib1g-dev file wget
 ```
 
-Ubuntu 22.04:
+Ubuntu 22.04.5:
+
+*Note: This is the last LS version that can build the openwrt-19.07.* branch.*
 
 ```sh
-sudo apt install build-essential gawk gcc-multilib flex git gettext libncurses5-dev libssl-dev python3-distutils zlib1g-dev
+sudo apt install build-essential gawk gcc-multilib flex git gettext libncurses5-dev libssl-dev python3-distutils zlib1g-dev python2
 ```
 
 Ubuntu 20.04.4:
