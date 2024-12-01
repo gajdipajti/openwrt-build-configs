@@ -3,8 +3,8 @@
 > This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
 
 * Built on: Ubuntu 22.04.5
-* Tested on: TPLink TL-WR841ND v8; Past issues: *TL-WR941ND v3* -> unstable wifi
-* Firmware version: Cyrus 19.07.11 r11435-15432053ab / LuCI openwrt-19.07 branch git-22.264.46202-f25285a-1
+* Tested on: TPLink TL-WR740N v4; Past issues: *TL-WR941ND v3* -> unstable wifi
+* Firmware version: Cyrus 19.07.11 r11435-15432053ab / LuCI openwrt-19.07 branch git-22.264.46202-f25285a
 * Kernel version: 4.14.275
 
 ## 0. Notes
