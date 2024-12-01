@@ -2,9 +2,9 @@
 
 > This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
 
-* Built on: Ubuntu 20.04.4
-* Tested on: TPLink TL-WR740N v4; Past issues: *TL-WR941ND v3* -> unstable wifi
-* Firmware version: Cyrus 19.07.11 r11435-15432053ab / LuCI openwrt-19.07 branch git-22.115.68448-712bc8e
+* Built on: Ubuntu 22.04.5
+* Tested on: TPLink TL-WR841ND v8; Past issues: *TL-WR941ND v3* -> unstable wifi
+* Firmware version: Cyrus 19.07.11 r11435-15432053ab / LuCI openwrt-19.07 branch git-22.264.46202-f25285a-1
 * Kernel version: 4.14.275
 
 ## 0. Notes
@@ -14,6 +14,8 @@ I wasn't able to ssh into some of my old *19.07.10* devices after switching to U
 At the end I decided to cherry-pick 5 dropbear commits and create my own tagged release. And again, just to emphasize:
 
 > This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
+
+*Note: Ubuntu 22.04.5 is the last LTS version that can build the openwrt-19.07.* branch.*
 
 ### 0.1. Changelog
 
@@ -45,7 +47,7 @@ git clone git@github.com:gajdipajti/openwrt.git --branch v19.07.11 --single-bran
 ## 2. Selected devices
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
-* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
+* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr741nd_v4)
 * TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3) - however I don't recommend using this device, see errata
 

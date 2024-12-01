@@ -64,7 +64,7 @@ sudo apt install build-essential clang flex bison g++ gawk gcc-multilib g++-mult
 
 Ubuntu 22.04.5:
 
-*Note: This is the last LS version that can build the openwrt-19.07.* branch.*
+*Note: This is the last LTS version that can build the openwrt-19.07.* branch.*
 
 ```sh
 sudo apt install build-essential gawk gcc-multilib flex git gettext libncurses5-dev libssl-dev python3-distutils zlib1g-dev python2
