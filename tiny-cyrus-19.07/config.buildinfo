@@ -17,9 +17,8 @@ CONFIG_IMAGEOPT=y
 # CONFIG_IPV6 is not set
 CONFIG_JSON_OVERVIEW_IMAGE_INFO=y
 # CONFIG_KERNEL_CRASHLOG is not set
+# CONFIG_KERNEL_DEBUG_FS is not set
 # CONFIG_KERNEL_IPV6 is not set
-# CONFIG_KERNEL_PRINTK is not set
-# CONFIG_KERNEL_PRINTK_TIME is not set
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_hu=y
 CONFIG_LUCI_SRCDIET=y
@@ -30,6 +29,7 @@ CONFIG_PACKAGE_cgi-io=y
 CONFIG_PACKAGE_ip-tiny=y
 CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
 CONFIG_PACKAGE_iptables-mod-ipopt=y
+# CONFIG_PACKAGE_kmod-gpio-button-hotplug is not set
 CONFIG_PACKAGE_kmod-hwmon-core=y
 CONFIG_PACKAGE_kmod-ipt-conntrack-extra=y
 CONFIG_PACKAGE_kmod-ipt-ipopt=y
@@ -43,8 +43,6 @@ CONFIG_PACKAGE_kmod-w1-gpio-custom=y
 CONFIG_PACKAGE_kmod-w1-master-gpio=y
 CONFIG_PACKAGE_kmod-w1-slave-therm=y
 CONFIG_PACKAGE_kmod-wireguard=y
-CONFIG_PACKAGE_libcap=y
-CONFIG_PACKAGE_libelf=y
 # CONFIG_PACKAGE_libip6tc is not set
 CONFIG_PACKAGE_libiwinfo-lua=y
 CONFIG_PACKAGE_liblua=y
@@ -55,8 +53,6 @@ CONFIG_PACKAGE_libpopt=y
 CONFIG_PACKAGE_libqrencode=y
 CONFIG_PACKAGE_librt=y
 CONFIG_PACKAGE_libubus-lua=y
-CONFIG_PACKAGE_libuuid=y
-CONFIG_PACKAGE_logrotate=y
 CONFIG_PACKAGE_lua=y
 CONFIG_PACKAGE_luci-app-firewall=y
 CONFIG_PACKAGE_luci-app-wireguard=y
@@ -90,11 +86,11 @@ CONFIG_PACKAGE_rpcd-mod-luci=y
 CONFIG_PACKAGE_uhttpd=y
 CONFIG_PACKAGE_uhttpd-mod-ubus=y
 # CONFIG_PACKAGE_usign is not set
-CONFIG_PACKAGE_wifitoggle=y
 CONFIG_PACKAGE_wireguard=y
 CONFIG_PACKAGE_wireguard-tools=y
+CONFIG_PACKAGE_wpad-basic=y
+# CONFIG_PACKAGE_wpad-mini is not set
 CONFIG_PACKAGE_xinetd=y
-CONFIG_PACKAGE_zlib=y
 # CONFIG_PER_FEED_REPO is not set
 # CONFIG_SIGNATURE_CHECK is not set
 # CONFIG_SIGNED_PACKAGES is not set

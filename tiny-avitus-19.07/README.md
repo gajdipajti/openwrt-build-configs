@@ -3,8 +3,8 @@
 > This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
 
 * Built on: Ubuntu 20.04.4
-* Tested on: TPLink TL-WR740N v4; Past problems: WR940ND v3;
-* Firmware version: Cyrus 19.07.11 r11435-15432053ab / LuCI openwrt-19.07 branch git-22.115.68448-712bc8e
+* Tested on: TPLink TL-WR740N v4; Past problems: WR941ND v3;
+* Firmware version: Cyrus 19.07.11 r11435-15432053ab / LuCI openwrt-19.07 branch git-22.264.46202-f25285a
 * Kernel version: 4.14.275
 
 ## 0. Notes
@@ -14,6 +14,8 @@ I wasn't able to ssh into some of my old *19.07.10* devices after switching to U
 At the end I decided to cherry-pick 5 dropbear commits and create my own tagged release. And again, just to emphasize:
 
 > This is NOT and official OpenWRT release. I am just a user, who wants to keep some of his devices usable.
+
+*Note: Ubuntu 22.04.5 is the last LTS version that can build the openwrt-19.07.* branch.*
 
 ### 0.1. Changelog
 
@@ -45,7 +47,7 @@ git clone git@github.com:gajdipajti/openwrt.git --branch v19.07.11 --single-bran
 ## 2. Selected devices
 
 * TP-Link [TL-WR740N](https://openwrt.org/toh/tp-link/tl-wr740n) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20)
-* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) none selected
+* TP-Link [TL-WR741ND](https://openwrt.org/toh/tp-link/tl-wr741nd) [v4](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr741nd_v4)
 * TP-Link [TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) [v7](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v7), [v8](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v8), [v9](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v9), [v11](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr841n_v11)
 * TP-Link [TL-WR941N](https://openwrt.org/toh/tp-link/tl-wr941nd) [v3](https://openwrt.org/toh/hwdata/tp-link/tp-link_tl-wr941nd_v3)
 
@@ -54,22 +56,26 @@ git clone git@github.com:gajdipajti/openwrt.git --branch v19.07.11 --single-bran
 * Target: ath79 + subtarget: tiny
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6
+  * *If you need ~100K more space remove printtk support. I left it in for testing.*
 * Image configuration:
   * Version configuration options: Release distribution: Avitus; Support URL: this GitHub repository
 * Base: -opkg, +dropbear:ecc, full_ecc, chacha20poly1305, curve25519, ed25519
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
+  * Other modules: -kmod-gpio-button-hotplug
   * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
   * Wireless Drivers: -ath-dfs, -mac80211-mesh
-* Libraries: -libuclient, +libqrencode
+* Libraries: +libqrencode
 * Luci:
   * Modules: +luci-base, +minify*, Translations: {hungarian, english}, +luci-mod-admin-full, +luci-mod-network, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
   * Protocols: +luci-proto-wireguard
 * Network:
+  * -wpad-mini, +wpad-basic
   * VPN: +wireguard, +wireguard-tools
   * Webservers: +uhttpd, +uhttpd-mod-ubus
-  * -uclient-fetch
-* Utilities: +qrencode
+* Utilities:
+  * -wifitoggle
+  * +qrencode

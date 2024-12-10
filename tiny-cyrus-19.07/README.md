@@ -56,23 +56,26 @@ git clone git@github.com:gajdipajti/openwrt.git --branch v19.07.11 --single-bran
 * Target: ar7xxx/ar9xxx + subtarget: tiny
 * Target Images: squashfs with 1024 Block size
 * Global build settings: small changes, mostly stripping and removing IPv6
+  * *If you need ~100K more space remove printtk support. I left it in for testing.*
 * Image configuration:
   * Version configuration options: Release distribution: Cyrus; Support URL: this GitHub repository
 * Base: -opkg, +dropbear:ecc, full_ecc, chacha20poly1305, curve25519, ed25519
 * Administration: +muninlite
 * Kernel modules:
   * Network Support: -kmod-ppp, +kmod-wireguard
+  * Other modules: -kmod-gpio-button-hotplug
   * W1-support: +kmod-w1, +kmod-w1-gpio-custom, +kmod-w1-master-gpio, +kmod-w1-slave-therm
   * Wireless Drivers: -ath-dfs, -mac80211-mesh
-* Libraries: -libuclient, +libqrencode
+* Libraries: +libqrencode
 * Luci:
   * Modules: +luci-base, +minify*, Translations: {hungarian, english}, +luci-mod-admin-full, +luci-mod-network, +luci-mod-status, +luci-mod-system
   * Applications: +luci-app-firewall, +luci-app-wireguard
   * Themes: +luci-theme-bootstrap
   * Protocols: +luci-proto-wireguard
 * Network:
+  * -wpad-mini, +wpad-basic
   * VPN: +wireguard, +wireguard-tools
   * Webservers: +uhttpd, +uhttpd-mod-ubus
 * Utilities:
-  * +logrotate
+  * -wifitoggle
   * +qrencode
