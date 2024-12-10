@@ -59,7 +59,7 @@ Reference: [3](https://openwrt.org/docs/guide-developer/toolchain/install-builds
 Ubuntu 24.04: 
 
 ```sh
-sudo apt install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-setuptools rsync swig unzip zlib1g-dev file wget
+sudo apt install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev python3-setuptools rsync swig unzip zlib1g-dev file wget
 ```
 
 Ubuntu 22.04.5:
